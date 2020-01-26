@@ -1,0 +1,1 @@
+export const API_URL = 'http://localhost:5000'; // for hitting local flask endpoints
