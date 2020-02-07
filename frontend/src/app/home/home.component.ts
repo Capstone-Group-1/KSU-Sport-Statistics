@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as Index from "../reducers/index";
+import { getExamples } from '../actions/home.action';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<Index.State>) { }
 
-  ngOnInit() {
+
+  ngOnInit() {}
+
+  public getExamples() {
+    this.store.dispatch(getExamples());
   }
 
 }
