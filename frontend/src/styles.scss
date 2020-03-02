@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button:focus {
+    outline: none;
+}
+
+.search {
+    width: 90%;
+}
+
+.center {
+    text-align: center;
+}
+
+.logo {
+    width: 84px;
+    float: right;
+}
+
+// Desktop Styles
+@media (min-width: 1025px) {
+  
+    .search {
+        width: 90%;
+    }
+    
+  }
+  

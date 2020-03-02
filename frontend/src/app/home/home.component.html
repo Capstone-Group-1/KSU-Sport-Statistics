@@ -1,3 +1,15 @@
-<h2>Home component</h2>
-<button type="button" mdbBtn color="primary" (click)="getExamples()" mdbWavesEffect>Get example data</button>
-<app-example></app-example>
+<h2 class="d-flex align-items-center justify-content-center pt-5">Search</h2>
+<div class="center"> 
+    <a>
+        <mdb-icon class="p-1" fas icon="search"></mdb-icon>
+        <mat-form-field class="p-1 search"> 
+            <input type="text" placeholder="Sport or player..." matInput [formControl]="myControl"
+                [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </a>
+</div>
