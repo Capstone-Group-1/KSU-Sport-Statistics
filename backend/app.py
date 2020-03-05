@@ -21,11 +21,11 @@ def PlayerImprovements():
     pass
 
 #team endpoints
-@app.route("/team", methods=["GET"])
-def Team():
-    id = request.args.get('id')
-
-    return "Team Endpoint id " + id
+@app.route("/team/roster", methods=["GET"])
+def TeamRoster():
+    sport = request.args.get('sport')
+    data = GetTeamRoster(sport)
+    return data
 
 if __name__ == "__main__":
     app.run()

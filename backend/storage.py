@@ -11,6 +11,7 @@ base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+#player methods
 def GetPlayerData(id, sport):
     playerQuery = ""
 
@@ -33,4 +34,31 @@ def GetPlayerData(id, sport):
     
     return json.dumps(PlayerData)
 
-GetPlayerData(1, "wbb")
+
+#team methods
+def GetTeamRoster(sport):
+    TeamRoster = []
+    TeamQuery = ""
+
+
+    if sport == "mbb":
+        TeamQuery = session.query(mbbRoster).all()
+    elif sport == "wbb":
+        TeamQuery = session.query(wbbRoster).all()
+    elif sport == "baseball":
+        TeamQuery = session.query(baseballRoster).all()
+    elif sport == "softball":
+        TeamQuery = session.query(softballRoster).all()
+
+    for item in TeamQuery:
+        TeamMember = {
+            "jerseyNum": item.jerseyNo,
+            "pictureFile": item.picFileName,
+            "firstname": item.firstName,
+            "lastname": item.lastName
+        }
+        TeamRoster.append(TeamMember)
+        
+    session.close()
+
+    return json.dumps(TeamRoster)

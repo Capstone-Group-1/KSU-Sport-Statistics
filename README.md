@@ -15,3 +15,25 @@ Run angular front end using command "ng serve".
 Run "python3 app.py" and "ng serve" in separate terminals (or run as background processes).
 Cmd + click (control click for windows) on the url (should be something like http://localhost:4200/) to get to the application.
 Go to http://localhost:4200/example to test the integration between Flask and Angular.
+
+# API Endpoints
+/team/roster
+
+Gets team roster
+
+Takes one argument. ?sport=whatever
+ex: http://127.0.0.1:5000/team/roster?sport=mbb
+
+Returns a list of dictionaries.
+ex: [{"jerseyNum": 45, "lastname": "wolfe", "pictureFile": "empic.png", "firstname": "em"}]
+
+Possible arguments to be passed:
+
+mbb - Men's Basketball
+wbb - Women's Basketball
+baseball - Baseball
+softball - Softball
+
+/team/stats
+
+Gets team overall stats
