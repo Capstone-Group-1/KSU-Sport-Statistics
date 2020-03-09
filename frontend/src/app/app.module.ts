@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import {AppComponent} from './app.component';
-import {ExampleApiService} from './services/example-api.service';
+import {ApiService} from './services/api.service';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ExampleComponent } from './example/example.component';
@@ -58,7 +58,7 @@ import { ProgressComponent } from './team/progress/progress.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [ExampleApiService],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

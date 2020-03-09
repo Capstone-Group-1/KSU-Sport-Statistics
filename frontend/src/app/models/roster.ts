@@ -1,6 +1,6 @@
 export class Roster {
     constructor(
-      public jerseyNo: number,
+      public jerseyNum: number,
       public picture: string,
       public firstname: string,
       public lastname: string,

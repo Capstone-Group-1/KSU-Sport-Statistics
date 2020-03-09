@@ -32,7 +32,14 @@ const appReducer = createReducer(
       ...state,
       currentTeam: team
     }
-  ))
+  )),
+
+  on(AppActions.rostersLoadedSuccess, (state: State, { rosters }) => (
+    {
+      ...state
+      , rosters: rosters
+    })
+  ),
 
 );
 

@@ -27,6 +27,43 @@ button:focus {
     justify-content: center;
     margin: auto;
     display: flex;
+    border-top: 1px solid lightgrey;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+.name {
+    margin-top: auto;
+    margin-right: auto;
+    padding-left: 70px;
+}
+
+.jerseyNum {
+    margin-top: auto;
+}
+
+.flex-container {
+    display: contents;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.flex-container > div {
+    width: 100%;
+}
+
+.active-tab {
+    background-color: #3f51b5;
+    color: #fff !important;
+}
+
+.mat-drawer-container {
+    background-color: #FEFEFF !important;
 }
 
 // Desktop Styles
@@ -34,6 +71,11 @@ button:focus {
   
     .search {
         width: 90%;
+    }
+
+    .flex-container {
+        display: inline-flex;
+        width: 50%;
     }
     
   }
