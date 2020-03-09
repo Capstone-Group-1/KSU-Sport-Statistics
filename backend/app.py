@@ -16,7 +16,7 @@ def Player():
 
     return data
 
-@app.route("/player/improvement", methods="GET")
+@app.route("/player/improvement", methods=["GET"])
 def PlayerImprovements():
     pass
 

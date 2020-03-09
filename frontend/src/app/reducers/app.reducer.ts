@@ -1,26 +1,39 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Example } from '../models/example-model';
-import * as ExmapleApiActions from '../actions/home.action';
+import * as AppActions from '../actions/app.action';
+import { Roster } from '../models/roster';
 
 export const appFeatureKey = 'app';
 
 export interface State {
-    examples: Example[]
+    examples: Example[],
+    rosters: Roster[],
+    currentTeam: string
 }
 
 export const initialState: State = {
-    examples: []
+    examples: [],
+    rosters: [],
+    currentTeam: ""
 };
 
 const appReducer = createReducer(
   initialState,
 
-  on(ExmapleApiActions.examplesLoadedSuccess, (state: State, { examples }) => (
+  on(AppActions.examplesLoadedSuccess, (state: State, { examples }) => (
     {
       ...state,
       examples
     })
   ),
+
+  on(AppActions.updateCurrentTeam, (state: State, { team }) => (
+    {
+      ...state,
+      currentTeam: team
+    }
+  ))
+
 );
 
 export function reducer(state: State | undefined, action: Action) {

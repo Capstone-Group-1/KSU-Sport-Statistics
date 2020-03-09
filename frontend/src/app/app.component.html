@@ -11,21 +11,7 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
         <mat-nav-list>
-            <div >
-                <a>
-                    <mdb-icon class="p-1" fas icon="search"></mdb-icon>
-                    <mat-form-field style="width:80%;">
-                        <input type="text" placeholder="Search" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                           <mat-autocomplete #auto="matAutocomplete">
-                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                               {{option}}
-                            </mat-option>
-                        </mat-autocomplete>
-                     </mat-form-field>
-                </a>
-                <hr />
-            </div>
-            <div *ngFor="let sport of sports;" (click)="changeRoute(sport)">
+            <div *ngFor="let sport of sports;" (click)="updateCurrentTeam(sport.name)">
                 <div>
                     <a>
                         <mdb-icon class="p-1" fas icon={{sport.icon}}></mdb-icon>

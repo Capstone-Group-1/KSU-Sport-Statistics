@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects'
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ExampleApiService } from '../services/example-api.service';
 import { Router } from '@angular/router';
-import { getExamples } from '../actions/home.action';
+import { getExamples, getRosters } from '../actions/app.action';
 import { EMPTY } from 'rxjs';
 
 @Injectable()

@@ -19,6 +19,16 @@ button:focus {
     float: right;
 }
 
+.team-pic {
+    width: 100%;
+}
+
+.options {
+    justify-content: center;
+    margin: auto;
+    display: flex;
+}
+
 // Desktop Styles
 @media (min-width: 1025px) {
   

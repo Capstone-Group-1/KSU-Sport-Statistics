@@ -17,12 +17,20 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatAutocompleteModule, MatInputModule } from  '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TeamComponent } from './team/team.component';
+import { RosterComponent } from './team/roster/roster.component';
+import { StatsComponent } from './team/stats/stats.component';
+import { ProgressComponent } from './team/progress/progress.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ExampleComponent,
+    TeamComponent,
+    RosterComponent,
+    StatsComponent,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,
