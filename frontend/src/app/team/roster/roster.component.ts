@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Roster } from 'src/app/models/roster';
 import { Store, select } from "@ngrx/store";
 import * as fromStore from "../../reducers/index";
+import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
+import { PlayerComponent } from './player/player.component';
 
 @Component({
   selector: 'roster',
@@ -11,8 +13,9 @@ import * as fromStore from "../../reducers/index";
 export class RosterComponent implements OnInit, OnDestroy {
 
   rosters: Roster[] = [];
+  modalRef: MDBModalRef;
 
-  constructor(private store: Store<fromStore.State>) {}
+  constructor(private store: Store<fromStore.State>, private modalService: MDBModalService) {}
 
   subscriptions = [];
 
@@ -30,7 +33,8 @@ export class RosterComponent implements OnInit, OnDestroy {
   }
 
   showPlayerStats(roster: Roster) {
-    console.log(roster);
+    this.modalRef = this.modalService.show(PlayerComponent, { data: { roster }});
+    this.modalRef.content.action.subscribe(() => { this.modalRef.hide() });
   }
 
 }

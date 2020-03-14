@@ -16,7 +16,7 @@ def GetPlayerData(id, sport):
     playerQuery = ""
 
     if sport == "wbb":
-        playerQuery = session.query(wbbRoster).filter(wbbRoster.jerseyNo == id)
+        playerQuery = session.query(wbbRoster).filter(wbbRoster.jerseyNo == id).first()
 
     PlayerData = {
         "jerseyNo": playerQuery.jerseyNo,
@@ -29,9 +29,7 @@ def GetPlayerData(id, sport):
         "hometown": playerQuery.hometown,
         "highSchool": playerQuery.highSchool
     }
-
-    print(PlayerData)
-    
+        
     return json.dumps(PlayerData)
 
 

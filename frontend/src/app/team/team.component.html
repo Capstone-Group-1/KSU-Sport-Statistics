@@ -3,7 +3,7 @@
 <img *ngIf="team == 'Softball'" class="team-pic" src="../../assets/softball-image.jpg">
 <img *ngIf="team == 'Baseball'" class="team-pic" src="../../assets/baseball-image.png">
 
-<div class="btn-group options" role="group">
+<div class="btn-group options-team" role="group">
     <div *ngFor="let option of options">
         <button mdbBtn type="button" class="waves-light tab"
             [ngClass]="[option.active ? 'active-tab' : 'nonactive-tab']" (click)="setActiveTab(option.value)"
