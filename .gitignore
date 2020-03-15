@@ -1,1 +1,9 @@
 node_modules
+.DS_Store
+backend/.DS_Store
+backend/__pycache__/app.cpython-37.pyc
+backend/__pycache__/config.cpython-37.pyc
+backend/__pycache__/storage.cpython-37.pyc
+backend/config.py
+backend/models/__pycache__/model.cpython-37.pyc
+backend/config.py
