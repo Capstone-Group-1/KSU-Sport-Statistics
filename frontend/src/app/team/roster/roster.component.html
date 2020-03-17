@@ -1,0 +1,7 @@
+<div *ngFor="let roster of rosters" class="flex-container" (click)="showPlayerStats(roster)">
+    <div class="list-group-item d-flex justify-content-between align-items-center">
+        <img src="../../../assets/img_avatar.png" alt="Avatar" class="avatar">
+        <p class="name">{{roster.firstname}} {{roster.lastname}}</p>
+        <p class="jerseyNum">#{{roster.jerseyNum}}</p>
+    </div>
+</div>

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
+import { Store } from "@ngrx/store";
+import * as fromStore from "../reducers/index";
+import { updateCurrentTeam } from '../actions/app.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +14,7 @@ import { FormControl } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  constructor(private store: Store<fromStore.State>, private router: Router) {
   }
 
   myControl = new FormControl();
@@ -52,6 +56,13 @@ export class HomeComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.searchOptions.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  updateCurrentTeam(team) {
+    if (team !== "") {
+      this.store.dispatch(updateCurrentTeam({ team: team }));
+      this.router.navigateByUrl('/team');
+    }
   }
 
 }

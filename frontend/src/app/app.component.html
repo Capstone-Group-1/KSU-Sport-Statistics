@@ -3,7 +3,14 @@
         <button mat-icon-button>
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
         </button>
-        <h1>KSU Sports Statistics</h1>
+        <mdb-breadcrumb>
+            <mdb-breadcrumb-item>
+              <mdb-icon fas class="mr-1"></mdb-icon> {{title}}
+            </mdb-breadcrumb-item>
+            <mdb-breadcrumb-item *ngIf="team">
+              <mdb-icon fas icon="caret-right" class="mr-1"></mdb-icon> {{team}}
+            </mdb-breadcrumb-item>
+          </mdb-breadcrumb>
         <span class="menu-spacer"></span>
         <img src="../assets/ksu-logo.png" class="logo ml-auto mr-1">
     </mat-toolbar-row>
@@ -11,21 +18,7 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav>
         <mat-nav-list>
-            <div >
-                <a>
-                    <mdb-icon class="p-1" fas icon="search"></mdb-icon>
-                    <mat-form-field style="width:80%;">
-                        <input type="text" placeholder="Search" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                           <mat-autocomplete #auto="matAutocomplete">
-                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                               {{option}}
-                            </mat-option>
-                        </mat-autocomplete>
-                     </mat-form-field>
-                </a>
-                <hr />
-            </div>
-            <div *ngFor="let sport of sports;" (click)="changeRoute(sport)">
+            <div *ngFor="let sport of sports;" (click)="updateCurrentTeam(sport.name)">
                 <div>
                     <a>
                         <mdb-icon class="p-1" fas icon={{sport.icon}}></mdb-icon>
@@ -37,7 +30,7 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div style="height: 88vh;">
+        <div>
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

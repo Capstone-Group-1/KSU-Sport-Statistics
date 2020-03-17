@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import {AppComponent} from './app.component';
-import {ExampleApiService} from './services/example-api.service';
+import {ApiService} from './services/api.service';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ExampleComponent } from './example/example.component';
@@ -17,12 +17,27 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatAutocompleteModule, MatInputModule } from  '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TeamComponent } from './team/team.component';
+import { RosterComponent } from './team/roster/roster.component';
+import { StatsComponent } from './team/stats/stats.component';
+import { ProgressComponent } from './team/progress/progress.component';
+import { PlayerComponent } from './team/roster/player/player.component';
+import { Roster } from './models/roster';
+import { PlayerInfoComponent } from './team/roster/player/player-info/player-info.component';
+import { PlayerStatsComponent } from './team/roster/player/player-stats/player-stats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ExampleComponent,
+    TeamComponent,
+    RosterComponent,
+    StatsComponent,
+    ProgressComponent,
+    PlayerComponent,
+    PlayerInfoComponent,
+    PlayerStatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +65,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [ExampleApiService],
+  entryComponents: [PlayerComponent],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
