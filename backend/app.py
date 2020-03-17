@@ -16,15 +16,21 @@ def Player():
 
     return data
 
-@app.route("/player/improvement", methods="GET")
-def PlayerImprovements():
-    pass
+# @app.route("/player/improvement", methods="GET")
+# def PlayerImprovements():
+#     pass
 
 #team endpoints
 @app.route("/team/roster", methods=["GET"])
 def TeamRoster():
     sport = request.args.get('sport')
     data = GetTeamRoster(sport)
+    return data
+
+@app.route("/team/stats", methods=["GET"])
+def TeamStats():
+    sport = request.args.get('sport')
+    data = GetTeamStats(sport)
     return data
 
 if __name__ == "__main__":
