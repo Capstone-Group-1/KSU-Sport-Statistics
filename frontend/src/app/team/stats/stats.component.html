@@ -1,1 +1,12 @@
-<p>stats works!</p>
+<div style="border: 1px solid rgba(0, 0, 0, 0.125); height: 100%;" class="fluid-container m-3">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12 col-md-6 col-lg-3" *ngFor="let stat of formattedStats">
+                <div class="list-group-item mt-1 d-flex">
+                    <p>{{stat.name}}</p>
+                    <p>{{stat.data}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

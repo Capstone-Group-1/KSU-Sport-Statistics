@@ -2,19 +2,22 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Example } from '../models/example-model';
 import * as AppActions from '../actions/app.action';
 import { Roster } from '../models/roster';
+import { Stat } from '../models/Stat';
 
 export const appFeatureKey = 'app';
 
 export interface State {
     examples: Example[],
     rosters: Roster[],
-    currentTeam: string
+    currentTeam: string,
+    stats: Stat[]
 }
 
 export const initialState: State = {
     examples: [],
     rosters: [],
-    currentTeam: ""
+    currentTeam: "",
+    stats: []
 };
 
 const appReducer = createReducer(
@@ -38,6 +41,13 @@ const appReducer = createReducer(
     {
       ...state
       , rosters: rosters
+    })
+  ),
+
+  on(AppActions.currentTeamStatsSuccess, (state: State, { stats }) => (
+    {
+      ...state
+      , stats: stats
     })
   ),
 

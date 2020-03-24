@@ -22,7 +22,6 @@ import { RosterComponent } from './team/roster/roster.component';
 import { StatsComponent } from './team/stats/stats.component';
 import { ProgressComponent } from './team/progress/progress.component';
 import { PlayerComponent } from './team/roster/player/player.component';
-import { Roster } from './models/roster';
 import { PlayerInfoComponent } from './team/roster/player/player-info/player-info.component';
 import { PlayerStatsComponent } from './team/roster/player/player-stats/player-stats.component';
 

@@ -4,6 +4,7 @@ import { Store, select } from "@ngrx/store";
 import * as fromStore from "../../reducers/index";
 import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
 import { PlayerComponent } from './player/player.component';
+import { getRosters } from 'src/app/actions/app.action';
 
 @Component({
   selector: 'roster',
@@ -15,7 +16,8 @@ export class RosterComponent implements OnInit, OnDestroy {
   rosters: Roster[] = [];
   modalRef: MDBModalRef;
 
-  constructor(private store: Store<fromStore.State>, private modalService: MDBModalService) {}
+  constructor(private store: Store<fromStore.State>, private modalService: MDBModalService) {
+  }
 
   subscriptions = [];
 
