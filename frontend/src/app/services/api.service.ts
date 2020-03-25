@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import {API_URL} from '../env';
 import { Example } from '../models/example-model';
 import { Roster } from '../models/roster';
-import { Stat } from '../models/Stat';
+import { Stat } from '../models/stat';
 import { select, Store } from '@ngrx/store';
 import * as fromStore from '../reducers/index';
 import * as Index from "../reducers/index";

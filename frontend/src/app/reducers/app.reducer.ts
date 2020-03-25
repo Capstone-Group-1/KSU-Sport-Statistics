@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Example } from '../models/example-model';
 import * as AppActions from '../actions/app.action';
 import { Roster } from '../models/roster';
-import { Stat } from '../models/Stat';
+import { Stat } from '../models/stat';
 
 export const appFeatureKey = 'app';
 

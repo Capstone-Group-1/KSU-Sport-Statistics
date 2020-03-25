@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Example } from '../models/example-model';
 import { Roster } from '../models/roster';
-import { Stat } from '../models/Stat';
+import { Stat } from '../models/stat';
 
 export const getExamples = createAction('[Home] Get Examples');
 export const examplesLoadedSuccess = createAction('[Home] Examples Loaded Success', props<{ examples: Example[] }>());

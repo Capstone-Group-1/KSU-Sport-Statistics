@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Stat } from "../../models/Stat";
+import { Stat } from "../../models/stat";
 import * as fromStore from '../../reducers/index';
 import * as Index from "../../reducers/index";
 import { getCurrentTeamStats } from 'src/app/actions/app.action';

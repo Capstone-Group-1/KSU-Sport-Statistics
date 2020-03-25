@@ -23,13 +23,6 @@ button:focus {
     width: 100%;
 }
 
-.options-team {
-    justify-content: center;
-    margin: auto;
-    display: flex;
-    border-top: 1px solid lightgrey;
-}
-
 .options-player {
     justify-content: center;
     margin: auto;
@@ -118,6 +111,10 @@ button:focus {
     flex-wrap: nowrap;
     text-align: left;
     margin-left: 30px;
+  }
+
+  .list-group-item:last-child {
+      height: 85%;
   }
 
 // Desktop Styles
