@@ -30,12 +30,13 @@ const appReducer = createReducer(
     })
   ),
 
-  on(AppActions.updateCurrentTeam, (state: State, { team }) => (
-    {
+  on(AppActions.updateCurrentTeam, (state: State, { team }) => { 
+    localStorage.setItem('team', team);
+    return ({
       ...state,
       currentTeam: team
     }
-  )),
+  )}),
 
   on(AppActions.rostersLoadedSuccess, (state: State, { rosters }) => (
     {
