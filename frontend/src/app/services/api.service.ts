@@ -48,12 +48,8 @@ export class ApiService {
   getExamples(): Observable<Example[]> {
     return this.http
       .get<Example[]>(`${API_URL}/examples`).pipe(
-        map(data => {
-          return data;
-        }),
-        catchError(error => {
-          return throwError(error);
-        })
+        map(data => data),
+        catchError(error => throwError(error))
       )
   }
 
@@ -61,12 +57,8 @@ export class ApiService {
     let teamAcr = this.teamAcronym;
     return this.http
       .get<Roster[]>(`${API_URL}/team/roster?sport=${teamAcr}`).pipe(
-        map(data => {
-          return data;
-        }),
-        catchError(error => {
-          return throwError(error);
-        })
+        map(data => data),
+        catchError(error => throwError(error))
       );
   }
 
@@ -74,12 +66,8 @@ export class ApiService {
     let teamAcr = this.teamAcronym;
     return this.http
       .get<Stat[]>(`${API_URL}/team/stats?sport=${teamAcr}`).pipe(
-        map(data => {
-          return data;
-        }),
-        catchError(error => {
-          return throwError(error);
-        })
+        map(data => data),
+        catchError(error => throwError(error))
       );
   }
 }

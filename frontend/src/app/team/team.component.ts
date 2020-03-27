@@ -28,6 +28,9 @@ export class TeamComponent implements OnInit, OnDestroy {
       .subscribe((team: string) => {
         this.team = team;
         this.store.dispatch(getRosters());
+        setTimeout(() => {
+          this.store.dispatch(getCurrentTeamStats());
+      }, 100);
       });
 
       this.subscriptions = [teamSubscription]
