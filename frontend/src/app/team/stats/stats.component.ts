@@ -51,6 +51,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       for (let [name, data] of Object.entries(stats[0])) {
         if (!individualAttributes.includes(name)) {
           totalStats[name] = stats.reduce((total, x) => total + x[name], 0);
+          totalStats[name] = Math.round(totalStats[name] * 100) / 100;
         }
       }
       stats = totalStats;
