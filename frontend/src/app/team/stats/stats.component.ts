@@ -56,7 +56,9 @@ export class StatsComponent implements OnInit, OnDestroy {
       stats = totalStats;
     }
     for (let [name, data] of Object.entries(stats)) {
-      this.formattedStats.push(new Stat(name, data));
+      let formattedName = name.replace(/([A-Z])/g, ' $1').trim();
+      formattedName = formattedName.charAt(0).toUpperCase() + formattedName.slice(1);
+      this.formattedStats.push(new Stat(formattedName, data));
     }
   }
 
