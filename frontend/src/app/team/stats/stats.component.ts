@@ -45,7 +45,17 @@ export class StatsComponent implements OnInit, OnDestroy {
   updateStats(option) {
     this.formattedStats = [];
     let stats = option == "Overall" ? this.statArrays[option] : this.statArrays[option][1];
-    console.log(stats);
+    if (Array.isArray(stats)) {
+      console.log(stats);
+      let totalStats = {};
+      let individualAttributes = ["jerseyNo", "gamesStarted", "gamesPlayed"];
+      for (let [name, data] of Object.entries(stats[0])) {
+        if (!individualAttributes.includes(name)) {
+          totalStats[name] = stats.reduce((total, x) => total + x[name], 0);
+        }
+      }
+      stats = totalStats;
+    }
     for (let [name, data] of Object.entries(stats)) {
       this.formattedStats.push(new Stat(name, data));
     }
