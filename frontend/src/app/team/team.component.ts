@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from "@ngrx/store";
 import * as fromStore from "../reducers/index";
-import { getRosters } from '../actions/app.action';
+import { getRosters, getCurrentTeamStats } from '../actions/app.action';
 
 @Component({
   selector: 'team',
@@ -27,7 +27,10 @@ export class TeamComponent implements OnInit, OnDestroy {
     const teamSubscription = this.store.pipe(select(fromStore.getCurrentTeam))
       .subscribe((team: string) => {
         this.team = team;
-        this.store.dispatch(getRosters({ team: team }));
+        this.store.dispatch(getRosters());
+        setTimeout(() => {
+          this.store.dispatch(getCurrentTeamStats());
+      }, 100);
       });
 
       this.subscriptions = [teamSubscription]
