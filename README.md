@@ -78,4 +78,25 @@ softball - Softball
 
 /player/stats
 
+Gets specified player stats
+
+Takes two arguments. ?id=12&sport=whatever
+http://127.0.0.1:5000/player/stats?id=2&sport=wbb
+
+Returns a dictionary of dictionaries for baseball and softball
+[{"Pitching": ""}, {"Batting": {"jerseyNo": 2, "gamesStarted": 1, "atBats": 3.0, "homeRuns": 0.0, "shs": 1.0, "gdps": 0.0, "rbis": 0.0, "triples": 0.0, "runs": 2.0, "hbps": 1.0, "walks": 1.0, "totalBases": 2.0, "hits": 2.0, "gamesPlayed": 9, "sbAttempts": 3.0, "sfbs": 0.0, "sbs": 2.0, "strikeOuts": 0.0, "doubles": 0.0}}, {"Fielding": ""}]
+
+Returns a dictionary for mens and womens basketball
+{"tos": 3.0, "fieldGoalA": 13.0, "gamesStarted": 0, "fieldGoalM": 2.0, "blocks": 0.0, "dReb": 8.0, "gamesPlayed": 14, "ftM": 0.0, "oReb": 0.0, "3ptA": 11.0, "jerseyNo": 2, "ftA": 0.0, "minutesPlayed": 50.0, "points": 6.0, "asts": 4.0, "personalFouls": 4.0, "3ptM": 2.0, "steals": 1.0}
+
+Possible arguments to be passed:
+
+mbb - Men's Basketball
+wbb - Women's Basketball
+baseball - Baseball
+softball - Softball
+
+
+/team/stats/performance
+
 Coming soon...

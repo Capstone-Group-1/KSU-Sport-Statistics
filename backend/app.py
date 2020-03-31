@@ -13,12 +13,15 @@ def Player():
     id = request.args.get("id")
 
     data = GetPlayerData(id, sport)
-
     return data
 
-# @app.route("/player/improvement", methods="GET")
-# def PlayerImprovements():
-#     pass
+@app.route("/player/stats", methods=["GET"])
+def PlayerStats():
+    id = request.args.get("id")
+    sport = request.args.get("sport")
+
+    data = GetPlayerStats(id, sport)
+    return data
 
 #team endpoints
 @app.route("/team/roster", methods=["GET"])

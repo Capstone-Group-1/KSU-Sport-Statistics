@@ -36,6 +36,57 @@ def GetPlayerData(id, sport):
     return "No player with that jersey number."
 
 
+def GetPlayerStats(id, sport):
+    TeamStatsQuery = ""
+    PitchingStats = ""
+    BattingStats = ""
+    FieldingStats = ""
+
+    PitchingItem = ""
+    BattingItem = ""
+    FieldingItem = ""
+
+    PlayerStatsQuery = ""
+
+    if sport == "baseball":
+        PitchingStats = session.query(baseballPitchingStats).filter(baseballPitchingStats.jerseyNo == id).first()
+        BattingStats = session.query(baseballBattingStats).filter(baseballBattingStats.jerseyNo == id).first()
+        FieldingStats = session.query(baseballFieldingStats).filter(baseballFieldingStats.jerseyNo == id).first()
+    elif sport == "softball":
+        PitchingStats = session.query(softballPitchingStats).filter(softballPitchingStats.jerseyNo == id).first()
+        BattingStats = session.query(softballBattingStats).filter(softballBattingStats.jerseyNo == id).first()
+        FieldingStats = session.query(softballFieldingStats).filter(softballFieldingStats.jerseyNo == id).first()
+    elif sport == "wbb":
+        PlayerStatsQuery = session.query(wbbPlayerStats).filter(wbbPlayerStats.jerseyNo == id).first()
+    elif sport == "mbb":
+        PlayerStatsQuery = session.query(mbbPlayerStats).filter(mbbPlayerStats.jerseyNo == id).first()
+
+    if sport in ("wbb", "mbb"):
+        Basketball = PlayerStatsQuery.__dict__
+        Basketball.pop('_sa_instance_state', None)
+
+        return json.dumps(Basketball)
+
+    if sport in ("baseball", "softball"):
+        #for pitItem in PitchingStats:
+        if PitchingStats != None:
+            PitchingItem = PitchingStats.__dict__
+            PitchingItem.pop('_sa_instance_state', None)
+
+        #for batItem in BattingStats:
+        if BattingStats != None:
+            BattingItem = BattingStats.__dict__
+            BattingItem.pop('_sa_instance_state', None)
+
+        #for fieldItem in FieldingStats:
+        if FieldingStats != None:
+            FieldingItem = FieldingStats.__dict__
+            FieldingItem.pop('_sa_instance_state', None)
+
+        return json.dumps([{"Pitching": PitchingItem}, {"Batting": BattingItem}, {"Fielding": FieldingItem}])
+
+    return None
+
 #team methods
 def GetTeamRoster(sport):
     TeamRoster = []
