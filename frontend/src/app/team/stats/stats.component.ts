@@ -3,9 +3,6 @@ import { select, Store } from '@ngrx/store';
 import { Stat } from "../../models/stat";
 import * as fromStore from '../../reducers/index';
 import * as Index from "../../reducers/index";
-import { getCurrentTeamStats } from 'src/app/actions/app.action';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'stats',

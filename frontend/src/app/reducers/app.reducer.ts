@@ -10,14 +10,18 @@ export interface State {
     examples: Example[],
     rosters: Roster[],
     currentTeam: string,
-    stats: Stat[]
+    teamStats: Stat[],
+    playerStats: Stat[],
+    player: Roster
 }
 
 export const initialState: State = {
     examples: [],
     rosters: [],
     currentTeam: "",
-    stats: []
+    teamStats: [],
+    playerStats: [],
+    player: new Roster()
 };
 
 const appReducer = createReducer(
@@ -48,7 +52,21 @@ const appReducer = createReducer(
   on(AppActions.currentTeamStatsSuccess, (state: State, { stats }) => (
     {
       ...state
-      , stats: stats
+      , teamStats: stats
+    })
+  ),
+
+  on(AppActions.playerLoadedSuccess, (state: State, { roster }) => (
+    {
+      ...state
+      , player: roster
+    })
+  ),
+
+  on(AppActions.playerStatsLoadedSuccess, (state: State, { stats }) => (
+    {
+      ...state
+      , playerStats: stats
     })
   ),
 

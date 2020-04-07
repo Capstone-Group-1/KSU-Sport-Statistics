@@ -70,4 +70,22 @@ export class ApiService {
         catchError(error => throwError(error))
       );
   }
+
+  getPlayer(id: number): Observable<Roster> {
+    let teamAcr = this.teamAcronym;
+    return this.http
+      .get<Roster>(`${API_URL}/player?sport=${teamAcr}&id=${id}`).pipe(
+        map(data => data),
+        catchError(error => throwError(error))
+      );
+  }
+
+  getPlayerStats(id: number): Observable<Stat[]> {
+    let teamAcr = this.teamAcronym;
+    return this.http
+      .get<Stat[]>(`${API_URL}/player/stats?sport=${teamAcr}&id=${id}`).pipe(
+        map(data => data),
+        catchError(error => throwError(error))
+      );
+  }
 }

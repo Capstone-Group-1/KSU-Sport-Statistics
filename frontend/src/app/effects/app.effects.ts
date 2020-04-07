@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects'
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
-import { getExamples, getRosters, getCurrentTeamStats } from '../actions/app.action';
+import { getExamples, getRosters, getCurrentTeamStats, getPlayer, getPlayerStats } from '../actions/app.action';
 import { EMPTY } from 'rxjs';
 
 @Injectable()
@@ -39,6 +39,30 @@ export class AppEffects {
     mergeMap(() => this.apiService.getCurrentTeamStats()
       .pipe(
         map(stats => ({ type: '[Team] Current Team Stats Loaded Success', stats })),
+        catchError((error) => {
+          console.log(error);
+          return EMPTY;
+        }))
+    ))
+  );
+
+  getPlayer$ = createEffect(() => this.actions$.pipe(
+    ofType(getPlayer),
+    mergeMap((action) => this.apiService.getPlayer(action.id)
+      .pipe(
+        map(roster => ({ type: '[Player] Player Loaded Success', roster })),
+        catchError((error) => {
+          console.log(error);
+          return EMPTY;
+        }))
+    ))
+  );
+
+  getPlayerStats$ = createEffect(() => this.actions$.pipe(
+    ofType(getPlayerStats),
+    mergeMap((action) => this.apiService.getPlayerStats(action.id)
+      .pipe(
+        map(stats => ({ type: '[Player] Player Stats Loaded Success', stats })),
         catchError((error) => {
           console.log(error);
           return EMPTY;

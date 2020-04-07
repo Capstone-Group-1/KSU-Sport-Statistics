@@ -2,7 +2,7 @@
     <mdb-icon class="p-1" style="float:right;" fas icon="times" (click)="close();"></mdb-icon>
     <div class="modal-header justify-content-center">
         <img src="../../../assets/img_avatar.png" alt="Avatar" class="large-avatar">
-        <p class="heading mt-3 ml-2" style="font-weight: bold">{{roster.firstname}} {{roster.lastname}}</p>
+        <p class="heading mt-3 ml-2" style="font-weight: bold">{{player.firstName}} {{player.lastName}}</p>
         <div class="btn-group options-player" role="group">
             <div *ngFor="let option of options">
                 <button mdbBtn type="button" class="waves-light tab"
@@ -15,7 +15,7 @@
     </div>
 
     <div class="modal-body">
-        <player-info [roster]="roster" *ngIf="value == 'Info'"></player-info>
+        <player-info *ngIf="value == 'Info'"></player-info>
         <player-stats *ngIf="value == 'Stats'"></player-stats>
     </div>
 </div>
