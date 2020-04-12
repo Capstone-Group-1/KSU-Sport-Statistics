@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Roster } from 'src/app/models/roster';
 import { Subject } from 'rxjs';
+import { Store, select } from "@ngrx/store";
+import * as fromStore from "../../../reducers/index";
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(private store: Store<fromStore.State>) { }
 
-  roster: Roster;
   action: Subject<any> = new Subject();
+  player: Roster = new Roster();
 
   value: string = "Info";
   options = [
@@ -20,7 +22,15 @@ export class PlayerComponent implements OnInit {
     { value: "Stats", active: false },
   ];
 
+  subscriptions = [];
+
   ngOnInit() {
+    const playerSubscription = this.store.pipe(select(fromStore.getPlayer))
+      .subscribe((player: Roster) => {
+        this.player = player;
+      });
+
+      this.subscriptions = [playerSubscription]
   }
 
   setActiveTab(value: string) {
@@ -31,6 +41,10 @@ export class PlayerComponent implements OnInit {
 
   close() {
     this.action.next("close");
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
 }

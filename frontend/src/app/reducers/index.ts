@@ -25,6 +25,8 @@ export const getCurrentTeam = createSelector(selectApp, (state: fromApp.State) =
   return state.currentTeam;
 });
 export const getRosters = createSelector(selectApp, (state: fromApp.State) => state.rosters);
-export const getTeamStats = createSelector(selectApp, (state: fromApp.State) => state.stats);
+export const getTeamStats = createSelector(selectApp, (state: fromApp.State) => state.teamStats);
+export const getPlayer = createSelector(selectApp, (state: fromApp.State) => state.player);
+export const getPlayerStats = createSelector(selectApp, (state: fromApp.State) => state.playerStats);
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

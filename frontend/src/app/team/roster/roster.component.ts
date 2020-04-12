@@ -4,7 +4,7 @@ import { Store, select } from "@ngrx/store";
 import * as fromStore from "../../reducers/index";
 import { MDBModalService, MDBModalRef } from 'angular-bootstrap-md';
 import { PlayerComponent } from './player/player.component';
-import { getRosters } from 'src/app/actions/app.action';
+import { getPlayer, getPlayerStats } from 'src/app/actions/app.action';
 
 @Component({
   selector: 'roster',
@@ -34,8 +34,12 @@ export class RosterComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  showPlayerStats(roster: Roster) {
-    this.modalRef = this.modalService.show(PlayerComponent, { data: { roster }});
+  showPlayerStats(id: number) {
+    this.store.dispatch(getPlayer({ id }));
+    setTimeout(() => {
+      this.store.dispatch(getPlayerStats({ id }));
+  }, 100);
+    this.modalRef = this.modalService.show(PlayerComponent);
     this.modalRef.content.action.subscribe(() => { this.modalRef.hide() });
   }
 
