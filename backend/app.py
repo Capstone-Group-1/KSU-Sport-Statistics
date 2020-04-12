@@ -7,6 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 #player endpoints
+#TODO: Bug fix - 500 error on baseball and softball
 @app.route("/player", methods=["GET"])
 def Player():
     sport = request.args.get("sport")
@@ -34,6 +35,13 @@ def TeamRoster():
 def TeamStats():
     sport = request.args.get('sport')
     data = GetTeamStats(sport)
+    return data
+
+@app.route("/team/stats/progress", methods=["GET"])
+def TeamStatsProgress():
+    sport = request.args.get('sport')
+    stat = request.args.get('stat')
+    data = GetTeamStatsPerformance(sport, stat)
     return data
 
 if __name__ == "__main__":

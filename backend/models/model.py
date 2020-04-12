@@ -12,6 +12,22 @@ engine = create_engine("mysql://" + conf.mysql["user"] + ":" + conf.mysql["passw
 
 base = declarative_base(engine)
 
+class softballGameStats(base):
+    __tablename__ = "baseballGameStats"
+    __table_args__ = {"autoload": True}
+
+class baseballGameStats(base):
+    __tablename__ = "baseballGameStats"
+    __table_args__ = {"autoload": True}
+
+class wbbGameStats(base):
+    __tablename__ = "mbbGameStats"
+    __table_args__ = {"autoload": True}
+
+class mbbGameStats(base):
+    __tablename__ = "mbbGameStats"
+    __table_args__ = {"autoload": True}
+
 class baseballPitchingStats(base):
     __tablename__ = "baseballPitchingStats"
     __table_args__ = {"autoload": True}

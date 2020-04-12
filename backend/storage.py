@@ -21,14 +21,15 @@ def GetPlayerData(id, sport):
     elif sport == "wbb":
         playerQuery = session.query(wbbRoster).filter(wbbRoster.jerseyNo == id).first()
     elif sport == "baseball":
-        playerQuery = session.query(baseballRoster).filter(baseballRoster.jerseyNo == id)
+        playerQuery = session.query(baseballRoster).filter(baseballRoster.jerseyNo == id).first()
     elif sport == "softball":
-        playerQuery = session.query(softballRoster).filter(softballRoster.jerseyNo == id)
+        playerQuery = session.query(softballRoster).filter(softballRoster.jerseyNo == id).first()
 
     session.close()
 
     if playerQuery is not None:
         PlayerData = playerQuery.__dict__
+        print(PlayerData)
         PlayerData.pop('_sa_instance_state', None)
 
         return json.dumps(PlayerData)
@@ -166,3 +167,28 @@ def GetTeamStats(sport):
         return json.dumps([{"Pitching": Picthing}, {"Batting": Batting}, {"Fielding": Fielding}])
 
     return None
+
+
+def GetTeamStatsPerformance(sport, stat):
+    data = ""
+    dataList = []
+    Result = ""
+
+    if sport == "mbb":
+        data = session.query(mbbGameStats).all()
+    elif sport == "wbb":
+        data = session.query(wbbGameStats).all()
+    elif sport == "baseball":
+        data = session.query(baseballGameStats).all()
+    elif sport == "softball":
+        data = session.query(softballGameStats).all()
+
+    for item in data:
+        Result = item.__dict__
+        Game = {
+            "date": item.date,
+            "stat": Result.get(stat)
+        }
+        dataList.append(Game)
+
+    return json.dumps(dataList)

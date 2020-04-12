@@ -97,6 +97,59 @@ baseball - Baseball
 softball - Softball
 
 
-/team/stats/performance
+/team/stats/progress
 
-Coming soon...
+Gets team game by game progress for specified sport and spefied stat
+
+Takes two arguments ?sport=whatever&stat=whatever
+http://127.0.0.1:5000/team/stats/progress?sport=mbb&stat=3ptMade
+
+Returns a list of dictionaries. The dictionary contains the stat and the game date.
+[{"stat": 13, "date": "11/06/19"}, {"stat": 9, "date": "11/11/19"}, {"stat": 8, "date": "11/16/19"}, {"stat": 10, "date": "11/19/19"}, {"stat": 11, "date": "11/21/19"}, {"stat": 6, "date": "11/25/19"}]
+
+Possible arguments to be passed for sports:
+
+mbb - Men's Basketball
+wbb - Women's Basketball
+baseball - Baseball
+softball - Softball
+
+Possible arguments to be passed for stats:
+
+Basketball:
+fieldGoalsMade
+fieldGoalAttempts
+3ptMade
+3ptAttempted
+ftMade
+ftAtempted
+oRebs
+dRebs
+totalRebs
+personalFouls
+assists
+turnovers
+blocks
+steals
+points
+
+Baseball and Softball:
+atBats
+runs
+hits
+rbis
+doubles
+triples
+homeruns
+walks
+ibbs
+stolenBases
+caughtStealing
+hbps
+sacrificeHits
+sacrificeFlies
+gdps
+strikeouts
+putouts
+assists
+errors
