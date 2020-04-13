@@ -10,6 +10,7 @@ import { Stat } from '../models/stat';
 import { select, Store } from '@ngrx/store';
 import * as fromStore from '../reducers/index';
 import * as Index from "../reducers/index";
+import { Progress } from '../models/progress';
 
 @Injectable()
 export class ApiService {
@@ -87,5 +88,21 @@ export class ApiService {
         map(data => data),
         catchError(error => throwError(error))
       );
+  }
+
+  getProgressStatLabels(): Observable<string[]> {
+    let teamAcr = this.teamAcronym;
+    return this.http
+      .get<string[]>(`${API_URL}/team/stats/progress?sport=${teamAcr}`).pipe(
+        map(data => data),
+        catchError(error => throwError(error))
+      );
+  }
+
+  async getProgressStat(stat: string): Promise<Progress[]> {
+    let teamAcr = this.teamAcronym;
+    const data = await this.http
+      .get<Progress[]>(`${API_URL}/team/stats/progress?sport=${teamAcr}&stat=${stat}`).toPromise();
+    return data;
   }
 }
