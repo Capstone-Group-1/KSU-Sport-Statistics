@@ -30,10 +30,10 @@ export class TeamComponent implements OnInit, OnDestroy {
         this.store.dispatch(getRosters());
         setTimeout(() => {
           this.store.dispatch(getCurrentTeamStats());
-      }, 100);
+        }, 100);
       });
 
-      this.subscriptions = [teamSubscription]
+    this.subscriptions = [teamSubscription]
   }
 
   setActiveTab(value: string) {

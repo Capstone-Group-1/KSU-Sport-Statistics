@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, ChartsModule } from 'angular-bootstrap-md';
 
 import {AppComponent} from './app.component';
 import {ApiService} from './services/api.service';
@@ -15,7 +15,7 @@ import { AppEffects } from './effects/app.effects';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatAutocompleteModule, MatInputModule } from  '@angular/material';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatSelectModule } from  '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TeamComponent } from './team/team.component';
 import { RosterComponent } from './team/roster/roster.component';
@@ -48,6 +48,8 @@ import { PlayerStatsComponent } from './team/roster/player/player-stats/player-s
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule,
     MatAutocompleteModule,
     MatInputModule,
     MDBBootstrapModule.forRoot(),
@@ -62,7 +64,8 @@ import { PlayerStatsComponent } from './team/roster/player/player-stats/player-s
     EffectsModule.forRoot([AppEffects]),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   entryComponents: [PlayerComponent],
   providers: [ApiService],
