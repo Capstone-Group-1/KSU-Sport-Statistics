@@ -44,5 +44,11 @@ def TeamStatsProgress():
     data = GetTeamStatsPerformance(sport, stat)
     return data
 
+@app.route("/team/stats/statlist", methods=["GET"])
+def Stats():
+    sport = request.args.get('sport')
+    data = GetStats(sport)
+    return data
+
 if __name__ == "__main__":
     app.run()

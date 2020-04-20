@@ -153,3 +153,23 @@ strikeouts
 putouts
 assists
 errors
+
+
+/team/stats/statlist
+
+Gets list of team game stats
+
+Takes one argument ?sport=whatever
+http://127.0.0.1:5000/team/stats/statlist?sport=mbb
+
+
+Possible arguments to be passed for sports:
+
+mbb - Men's Basketball
+wbb - Women's Basketball
+baseball - Baseball
+softball - Softball
+
+
+Returns a list of dictionaries. The dictionary contains the stat and the full name
+[{"statName": "Outcome", "statAbrv": "outcome"}, {"statName": "Field Goals Made", "statAbrv": "fieldGoalsMade"}, {"statName": "Field Goal Attempts", "statAbrv": "fieldGoalAttempts"}, {"statName": "3 PT Made", "statAbrv": "3ptMade"}, {"statName": "3 PT Attempted", "statAbrv": "3ptAttempted"}, {"statName": "Free Throw Made", "statAbrv": "ftMade"}, {"statName": "Offensive Rebounds", "statAbrv": "oRebs"}, {"statName": "Defensive Rebounds", "statAbrv": "dRebs"}, {"statName": "Total Rebounds", "statAbrv": "totalRebs"}, {"statName": "Personal Fouls", "statAbrv": "personalFouls"}, {"statName": "Assists", "statAbrv": "assists"}, {"statName": "Turnovers", "statAbrv": "turnovers"}, {"statName": "Blocks", "statAbrv": "blocks"}, {"statName": "Steals", "statAbrv": "steals"}, {"statName": "Points", "statAbrv": "points"}]
