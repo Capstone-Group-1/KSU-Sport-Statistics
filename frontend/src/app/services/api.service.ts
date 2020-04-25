@@ -90,10 +90,10 @@ export class ApiService {
       );
   }
 
-  getProgressStatLabels(): Observable<string[]> {
+  getProgressStatLabels(): Observable<Object[]> {
     let teamAcr = this.teamAcronym;
     return this.http
-      .get<string[]>(`${API_URL}/team/stats/progress?sport=${teamAcr}`).pipe(
+      .get<string[]>(`${API_URL}/team/stats/statlist?sport=${teamAcr}`).pipe(
         map(data => data),
         catchError(error => throwError(error))
       );
