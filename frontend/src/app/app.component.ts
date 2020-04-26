@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { Store, select } from "@ngrx/store";
 import * as fromStore from "../app/reducers/index";
 import { updateCurrentTeam } from '../app/actions/app.action';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: "app-root",
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+  @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
   
   constructor(private store: Store<fromStore.State>, private router: Router) {
   }
@@ -72,6 +74,8 @@ export class AppComponent implements OnInit {
   }
 
   updateCurrentTeam(team) {
+    //this.sidenav.close();
+    setTimeout(() => {this.sidenav.close();}, 200);
     if (team !== "") {
       this.store.dispatch(updateCurrentTeam({ team: team }));
       this.router.navigateByUrl('/team');
