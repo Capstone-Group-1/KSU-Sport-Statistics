@@ -25,7 +25,6 @@ export class PlayerStatsComponent implements OnInit, OnDestroy {
     const statsSubscription = this.store.pipe(select(fromStore.getPlayerStats))
       .subscribe((statArrays: any[]) => {
         this.statArrays = {};
-        console.log(statArrays);
         if (!(Array.isArray(statArrays))) {
           this.statArrays["Overall"] = statArrays;
         } else {

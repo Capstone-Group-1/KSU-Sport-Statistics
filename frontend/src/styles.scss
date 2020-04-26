@@ -21,6 +21,7 @@ button:focus {
 
 .team-pic {
     width: 100%;
+    margin-top: -1px;
 }
 
 .options-player {
@@ -116,6 +117,48 @@ button:focus {
   .list-group-item:last-child {
       height: 85%;
   }
+
+  .pictureContainerPlayerPage{
+    width: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    height: 150px;
+    border-radius: 50%;
+    right: -9px;
+}
+
+img.absolutePlayerPage{
+    left: 6%;
+    width: 130px;
+    position: absolute;
+}
+
+.pictureContainerRosterPage{
+    width: 70px;
+    overflow: hidden;
+    position: relative;
+    height: 70px;
+    border-radius: 50%;
+    right: -9px;
+}
+
+img.absoluteRosterPage{
+    width: 65px;
+    position: absolute;
+}
+
+img.scaleUpPlayerPage {
+    left: -5%;
+    width: 170px;
+    position: absolute;
+}
+
+img.scaleUpRosterPage {
+    width: 80px;
+    position: absolute;
+    right: -6%;
+}
 
 // Desktop Styles
 @media (min-width: 1025px) {
