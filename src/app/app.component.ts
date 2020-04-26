@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { Store, select } from "@ngrx/store";
-import * as fromStore from "../app/reducers/index";
-import { updateCurrentTeam } from '../app/actions/app.action';
+import * as fromStore from "./reducers/index";
+import { updateCurrentTeam } from './actions/app.action';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 
