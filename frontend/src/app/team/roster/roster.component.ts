@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Roster } from 'src/app/models/roster';
 import { Store, select } from "@ngrx/store";
 import * as fromStore from "../../reducers/index";
@@ -11,10 +11,11 @@ import { getPlayer, getPlayerStats } from 'src/app/actions/app.action';
   templateUrl: './roster.component.html',
   styleUrls: ['./roster.component.scss']
 })
-export class RosterComponent implements OnInit, OnDestroy {
+export class RosterComponent implements OnInit {
 
   rosters: Roster[] = [];
   modalRef: MDBModalRef;
+  team: string = "";
 
   constructor(private store: Store<fromStore.State>, private modalService: MDBModalService) {
   }
@@ -22,12 +23,16 @@ export class RosterComponent implements OnInit, OnDestroy {
   subscriptions = [];
 
   ngOnInit() {
+    const teamSubscription = this.store.pipe(select(fromStore.getCurrentTeam))
+      .subscribe((team: string) => {
+        this.team = this.setTeam(team);
+      });
     const rostersSubscription = this.store.pipe(select(fromStore.getRosters))
       .subscribe((rosters: Roster[]) => {
         this.rosters = rosters;
       });
 
-      this.subscriptions = [rostersSubscription]
+      this.subscriptions = [rostersSubscription, teamSubscription]
   }
 
   ngOnDestroy() {
@@ -43,4 +48,29 @@ export class RosterComponent implements OnInit, OnDestroy {
     this.modalRef.content.action.subscribe(() => { this.modalRef.hide() });
   }
 
+  setTeam(team) {
+    let teamAcronym;
+    switch (team) {
+      case "Mens Basketball": {
+        teamAcronym = "mbb";
+        break;
+      }
+      case "Womens Basketball": {
+        teamAcronym = "wbb";
+        break;
+      }
+      case "Softball": {
+        teamAcronym = "softball";
+        break;
+      }
+      case "Baseball": {
+        teamAcronym = "baseball";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    return teamAcronym;
+  }
 }

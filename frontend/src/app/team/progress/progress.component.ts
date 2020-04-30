@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Progress } from 'src/app/models/progress';
 
 @Component({
   selector: 'app-progress',
@@ -13,9 +13,9 @@ export class ProgressComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   statsForm = new FormControl();
-  statOptions = [];
+  statOptions = null;
+  statLabels = [];
   stats = [];
-  test: any = null;
 
   public chartType: string = 'line';
   public chartDatasets: Array<any> = [];
@@ -41,19 +41,23 @@ export class ProgressComponent implements OnInit {
   subscriptions = [];
 
   ngOnInit() {
-    //   this.api.getProgressStatLabels().
-    //   subscribe(res => {
-    //     this.statOptions = res;
-    //   },
-    //   console.error
-    // );
-    this.statOptions = ["fieldGoalsMade", "fieldGoalAttempts"];
+      this.api.getProgressStatLabels().
+      subscribe(res => {
+        this.statOptions = res.reduce((a,x) => ({...a, [Object.values(x)[1]]: Object.values(x)[0]}), {});
+        this.statLabels = res.map(x => Object.values(x)[1]);
+        
+      },
+      console.error
+    );
   }
 
   async setupChart() {
     let chartData = [];
     for (let stat of this.stats) {
-      let progressData = await this.getProgressData(stat);
+      let progressData = await this.getProgressData(this.statOptions[stat]);
+      if (stat == "Outcome") {
+        progressData = this.calculateWinLossPercentage(progressData);
+      }
       this.chartLabels = progressData.map(x => x.date)
       chartData.push({
         data: progressData.map(x => x.stat),
@@ -66,6 +70,17 @@ export class ProgressComponent implements OnInit {
   async getProgressData(stat: string) {
     let resData = await this.api.getProgressStat(stat);
     return resData;
+  }
+
+  calculateWinLossPercentage(outcomes: Progress[]) {
+    let outcomeArray = [];
+    let outcomePercentages = [];
+    outcomes.forEach(outcome => {
+      let win = outcome.stat.toString() == "W" ? 1 : 0;
+      outcomeArray.push(win);
+      outcomePercentages.push(new Progress(outcome.date, outcomeArray.reduce( ( p, c ) => p + c, 0 ) / outcomeArray.length));
+    });
+    return outcomePercentages;
   }
 
   ngOnDestroy() {

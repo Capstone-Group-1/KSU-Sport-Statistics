@@ -17,7 +17,7 @@ export class TeamComponent implements OnInit, OnDestroy {
 
   options = [
     { value: "roster", active: true },
-    { value: "stats", active: false },
+    { value: "statistics", active: false },
     { value: "progress", active: false }
   ];
 

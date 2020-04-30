@@ -15,6 +15,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   action: Subject<any> = new Subject();
   player: Roster = new Roster();
+  team: string = "";
 
   value: string = "Info";
   options = [
@@ -25,12 +26,16 @@ export class PlayerComponent implements OnInit, OnDestroy {
   subscriptions = [];
 
   ngOnInit() {
+    const teamSubscription = this.store.pipe(select(fromStore.getCurrentTeam))
+      .subscribe((team: string) => {
+        this.team = this.setTeam(team);
+      });
     const playerSubscription = this.store.pipe(select(fromStore.getPlayer))
       .subscribe((player: Roster) => {
         this.player = player;
       });
 
-      this.subscriptions = [playerSubscription]
+      this.subscriptions = [playerSubscription, teamSubscription]
   }
 
   setActiveTab(value: string) {
@@ -45,6 +50,32 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  setTeam(team) {
+    let teamAcronym;
+    switch (team) {
+      case "Mens Basketball": {
+        teamAcronym = "mbb";
+        break;
+      }
+      case "Womens Basketball": {
+        teamAcronym = "wbb";
+        break;
+      }
+      case "Softball": {
+        teamAcronym = "softball";
+        break;
+      }
+      case "Baseball": {
+        teamAcronym = "baseball";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    return teamAcronym;
   }
 
 }
