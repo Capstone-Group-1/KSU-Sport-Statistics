@@ -173,3 +173,11 @@ softball - Softball
 
 Returns a list of dictionaries. The dictionary contains the stat and the full name
 [{"statName": "Outcome", "statAbrv": "outcome"}, {"statName": "Field Goals Made", "statAbrv": "fieldGoalsMade"}, {"statName": "Field Goal Attempts", "statAbrv": "fieldGoalAttempts"}, {"statName": "3 PT Made", "statAbrv": "3ptMade"}, {"statName": "3 PT Attempted", "statAbrv": "3ptAttempted"}, {"statName": "Free Throw Made", "statAbrv": "ftMade"}, {"statName": "Offensive Rebounds", "statAbrv": "oRebs"}, {"statName": "Defensive Rebounds", "statAbrv": "dRebs"}, {"statName": "Total Rebounds", "statAbrv": "totalRebs"}, {"statName": "Personal Fouls", "statAbrv": "personalFouls"}, {"statName": "Assists", "statAbrv": "assists"}, {"statName": "Turnovers", "statAbrv": "turnovers"}, {"statName": "Blocks", "statAbrv": "blocks"}, {"statName": "Steals", "statAbrv": "steals"}, {"statName": "Points", "statAbrv": "points"}]
+
+# Importer
+
+Loads contents of CSV file into database.
+
+CSV file is the name of the table.
+
+The importer creates a dynamic SQL insert statement and then inserts into the database based on the name of the file.
