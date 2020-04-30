@@ -24,10 +24,9 @@ for fileName in glob.glob(path):
         rd = csv.DictReader(file, delimiter=',')
         for row in rd:
 
-            columns = ', '.join("`" + str(x).replace('/', '_') + "`" for x in row.keys())
-            values = ', '.join("'" + str(x).replace('/', '_') + "'" for x in row.values())
+            columns = ', '.join("`" + str(x) + "`" for x in row.keys())
+            values = ', '.join("'" + str(x) + "'" for x in row.values())
             sql = "INSERT INTO %s ( %s ) VALUES ( %s );" % (table[0], columns, values)
-            
-            
+
             session.execute(sql)
             session.commit()
